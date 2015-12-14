@@ -1,5 +1,4 @@
 #include "sound_manager.hpp"
-#include <iostream>
 
 SoundManager& SoundManager::getInstance() {
 	static SoundManager instance; // Guaranteed to be destroyed.
@@ -8,7 +7,6 @@ SoundManager& SoundManager::getInstance() {
 
 SoundManager::~SoundManager() {
 	for (auto const& x : sounds){
-		std::cout << x.first << std::endl;
 		auto buffer = x.second->getBuffer();
 		delete buffer;
 		delete x.second;

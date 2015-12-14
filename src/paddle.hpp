@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "constants.h"
-#include "util_intersection.h"
+#include "util_intersection.hpp"
 #include "util_rand.hpp"
 #include "ball.hpp"
 
@@ -13,8 +13,8 @@ struct Paddle {
 	RectangleShape shape;
 	Vector2f velocity;
 	
-	Paddle(float mX, float mY);
-	void update();
+	void Init(float mX, float mY);
+	void update(const sf::Time dt);
 	float x();
 	float y();
 	float left();

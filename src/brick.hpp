@@ -2,7 +2,7 @@
 #define _BRICK_HPP_
 
 #include <SFML/Graphics.hpp>
-#include "util_intersection.h"
+#include "util_intersection.hpp"
 #include "util_rand.hpp"
 #include "ball.hpp"
 #include "sound_manager.hpp"

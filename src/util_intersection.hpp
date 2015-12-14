@@ -1,5 +1,5 @@
-#ifndef _UTIL_INTERSECTION_H_
-#define _UTIL_INTERSECTION_H_
+#ifndef _UTIL_INTERSECTION_HPP_
+#define _UTIL_INTERSECTION_HPP_
 
 template<class T1, class T2> bool isIntersecting(T1& mA, T2& mB) {
 	return mA.right() >= mB.left() && mA.left() <= mB.right()

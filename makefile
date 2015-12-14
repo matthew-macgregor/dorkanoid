@@ -5,7 +5,7 @@ CC=g++
 CFLAGS=-Wall -g -std=c++11 -c
 LDFLAGS=
 LDLIBS=-lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
-SOURCES=src/main.cpp src/ball.cpp src/paddle.cpp src/brick.cpp src/util_rand.cpp src/sound_manager.cpp
+SOURCES=src/main.cpp src/ball.cpp src/paddle.cpp src/brick.cpp src/util_rand.cpp src/sound_manager.cpp src/stage_one.cpp src/util_str.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=dorkanoid
 

@@ -1,16 +1,16 @@
 #include "paddle.hpp"
 
-constexpr float paddleWidth{60.f}, paddleHeight{20.f}, paddleVelocity{6.f};
+constexpr float paddleWidth{60.f}, paddleHeight{20.f}, paddleVelocity{600.f};
 
-Paddle::Paddle(float mX, float mY) {
+void Paddle::Init(float mX, float mY) {
 	shape.setPosition(mX, mY);
 	shape.setSize({paddleWidth, paddleHeight});
 	shape.setFillColor(Color::Blue);
 	shape.setOrigin(paddleWidth / 2.f, paddleHeight / 2.f);
 }
 
-void Paddle::update() {
-	shape.move(velocity);
+void Paddle::update(const sf::Time dt) {
+	shape.move(velocity * dt.asSeconds());
 
 	if(Keyboard::isKeyPressed(Keyboard::Key::Left) && left() > 0) {
 		velocity.x = -paddleVelocity;

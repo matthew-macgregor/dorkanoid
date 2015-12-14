@@ -1,6 +1,6 @@
 #include "ball.hpp"
 
-Ball::Ball(float mX, float mY) {
+void Ball::Init(float mX, float mY) {
 	shape.setPosition(mX, mY);
 	shape.setRadius(ballRadius);
 	shape.setFillColor(sf::Color::Red);
@@ -9,8 +9,8 @@ Ball::Ball(float mX, float mY) {
 	velocity = sf::Vector2f{-ballVelocity * r, -ballVelocity * r};
 }
 
-void Ball::update() { 
-	shape.move(velocity);
+void Ball::update(const sf::Time& deltaTime) { 
+	shape.move(velocity * deltaTime.asSeconds());
 	bool bounced = false;
 	
 	if(left() < 0) { 
