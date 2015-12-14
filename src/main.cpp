@@ -1,10 +1,10 @@
+// Copyright (c) 2015 Matthew MacGregor
+// License: Academic Free License ("AFL") v. 3.0
+// AFL License page: http://opensource.org/licenses/AFL-3.0
+
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-// #include <iostream>
-// #include <sstream>
-
 #include "constants.h"
-#include "util_intersection.hpp"
 #include "sound_manager.hpp"
 #include "stage_one.hpp"
 
