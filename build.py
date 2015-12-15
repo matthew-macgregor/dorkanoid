@@ -68,25 +68,27 @@ def build_modules(src_list, obj_dir):
     
     return changes
 
-def link_objects(src_list, obj_dir):
+def link_objects(src_list, obj_dir, exe):
     objs = []
     for cpp in src_list:
         o = os.path.join(obj_dir, cpp_to_obj(cpp))
         objs.append(o)
         
-    gpp = "g++ -o  dorkanoid {} -lsfml-window -lsfml-graphics -lsfml-system -lsfml-audio".format(" ".join(objs))
+    gpp = "g++ -o  {} {} -lsfml-window -lsfml-graphics -lsfml-system -lsfml-audio".format(exe, " ".join(objs))
     print(gpp)
     os.system(gpp)
 
 if __name__ == '__main__':
+    exe = 'dorkanoid'
     script_dir = os.path.dirname(os.path.realpath(__file__))
     source_dir = os.path.join(script_dir, 'src')
     obj_dir, hpp_dir = mkdirectories()
     impls, headers = find_cpp_files(source_dir)
     print(source_dir)
-    changes1 = copy_headers(headers, hpp_dir)
-    changes2 = build_modules(impls, obj_dir)
-    if changes1 and changes2:
-        link_objects(impls, obj_dir)
+    changes_h = copy_headers(headers, hpp_dir)
+    changes_o = build_modules(impls, obj_dir)
+    exists = os.path.exists(exe)
+    if changes_h or changes_o or not exists:
+        link_objects(impls, obj_dir, exe)
     else:
         print("Nothing to do.")
