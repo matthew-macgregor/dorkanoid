@@ -3,6 +3,7 @@ Vittorio Romeo. It's a good introduction to the SFML library and uses C++ 11
 features. 
 
 * [Arkanoid Clone Tutorial](https://www.youtube.com/watch?v=_4K3tsKa1Uc)
+* [Github](https://github.com/SuperV1234/Tutorials)
 
 After following the tutorial, I've enhanced the code and added the following
 features:
