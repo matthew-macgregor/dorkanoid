@@ -61,7 +61,8 @@ def build_modules(src_list, obj_dir):
         if is_modified(cpp, obj):
             gpp = "g++ -Wall -Ibuild/include -g -std=c++11 -c {} -o {} -lsfml-window -lsfml-graphics -lsfml-system -lsfml-audio".format(cpp, obj)
             print(gpp)
-            os.system(gpp)
+            if os.system(gpp) != 0:
+                raise Exception('Build error')
             changes = True
         else:
             print("Nothing to do for {}".format(cpp))
