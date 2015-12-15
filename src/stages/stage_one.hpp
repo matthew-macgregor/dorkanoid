@@ -22,13 +22,14 @@ class StageOne : public Stage {
         bool IsCompleted();
     
     private:
+        sf::Text scoreText;
+        sf::Text musicCreditsText;
+        sf::Font font;
         Ball ball;
         Paddle paddle;
-        sf::Font font;
-        sf::Text scoreText;
         std::vector<Brick> bricks;
-        int score = 0;
-        bool isOnARoll = false;
+        int score;
+        bool isOnARoll;
         
         void InitBricks();
 };

@@ -5,20 +5,27 @@
 #include "stage_one.hpp"
 #include <iostream>
 
-StageOne::StageOne() : 
-        ball(windowWidth / 2, windowHeight / 2),
-        paddle(windowWidth / 2, windowHeight / 1.15) {
+StageOne::StageOne() :       
+ball(windowWidth / 2, windowHeight / 2),
+paddle(windowWidth / 2, windowHeight / 1.15) {
     
     InitBricks();
     
     // Declare and load a font
     font.loadFromFile("media/VT323.ttf");
     
-    // Create a text
-    scoreText = sf::Text("", font);
+    // Create text objects
+    scoreText.setFont(font);
     scoreText.setCharacterSize(24);
     scoreText.setColor(sf::Color::Red);
     scoreText.setPosition( 10.f, 10.f );
+    
+    musicCreditsText.setFont(font);
+    musicCreditsText.setString("Music by dAmbient on Soundcloud");
+    musicCreditsText.setCharacterSize(16);
+    musicCreditsText.setColor(sf::Color::White);
+    musicCreditsText.setPosition( 570.f, 10.f );
+
 }
 
 void StageOne::Update(const sf::Time& deltaTime) {
@@ -46,18 +53,19 @@ void StageOne::Draw(sf::RenderWindow& canvas) {
     // Clear screen
     canvas.clear();
 
+    canvas.draw(scoreText);
+    canvas.draw(musicCreditsText);
+
     // Draw instructions
     canvas.draw(ball.shape);
     canvas.draw(paddle.shape);
-
+    
     for(auto& brick : bricks) { 
         if( brick.destroyed == false ) {
             canvas.draw(brick.shape);
         }
     }
     
-    canvas.draw(scoreText);
-
 }
 
 void StageOne::Reset() {
