@@ -5,59 +5,59 @@
 #include "sound_manager.hpp"
 
 SoundManager& SoundManager::getInstance() {
-	static SoundManager instance; // Guaranteed to be destroyed.
-	return instance;
+    static SoundManager instance; // Guaranteed to be destroyed.
+    return instance;
 }
 
 SoundManager::~SoundManager() {
-	sounds.clear();
+    sounds.clear();
 }
 
 bool SoundManager::hasSound(std::string name) {
-	return ( sounds.count(name) == 1 );
+    return ( sounds.count(name) == 1 );
 }
 
 bool SoundManager::loadSound(std::string filename, std::string name) {
-	if( sounds.count(name) == 1 ) {
-		return false;
-	}
-	
-	auto buffer = std::make_shared<sf::SoundBuffer>();
-	auto sound = std::make_shared<sf::Sound>();
-	
-	if (!buffer->loadFromFile(filename)) {
-		return false;
-	}
-	
-	sound->setBuffer(*buffer);
-	sounds[name] = sound;
-	buffers[name] = buffer;
+    if( sounds.count(name) == 1 ) {
+        return false;
+    }
+    
+    auto buffer = std::make_shared<sf::SoundBuffer>();
+    auto sound = std::make_shared<sf::Sound>();
+    
+    if (!buffer->loadFromFile(filename)) {
+        return false;
+    }
+    
+    sound->setBuffer(*buffer);
+    sounds[name] = sound;
+    buffers[name] = buffer;
     return true;
 }
 
 bool SoundManager::play(std::string name) {
-	if( sounds.count(name) == 0 ) {
-		return false;
-	} else {
-		if( sounds[name] != NULL ) {
-			sounds[name]->play();
-			return true;
-		}
+    if( sounds.count(name) == 0 ) {
+        return false;
+    } else {
+        if( sounds[name] != NULL ) {
+            sounds[name]->play();
+            return true;
+        }
 
-		return false;
-	}
+        return false;
+    }
 }
 
 bool SoundManager::playMusic(std::string filename) {
-	
-	// Open it from an audio file
-	if (!music.openFromFile(filename))
-	{
-		return false;
-	}
+    
+    // Open it from an audio file
+    if (!music.openFromFile(filename))
+    {
+        return false;
+    }
 
-	music.setLoop(true);         // make it loop
-	// Play it
-	music.play();
-	return true;
+    music.setLoop(true);         // make it loop
+    // Play it
+    music.play();
+    return true;
 }

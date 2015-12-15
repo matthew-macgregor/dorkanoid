@@ -11,24 +11,24 @@
 #include <SFML/Audio.hpp>
 
 class SoundManager {
-	
-	public:
-	    static SoundManager& getInstance();
-		
+    
+    public:
+        static SoundManager& getInstance();
+        
         SoundManager(SoundManager const&)    = delete;
         void operator=(SoundManager const&)  = delete;
-	
-		bool hasSound(std::string);
-		bool loadSound(std::string filename, std::string name);
-		bool play(std::string name);
-		bool playMusic(std::string filename);
-	
-	private:
-		SoundManager() {};
-		~SoundManager();
-		std::map<std::string, std::shared_ptr<sf::Sound>> sounds;
-		std::map<std::string, std::shared_ptr<sf::SoundBuffer>> buffers;
-		sf::Music music;
+    
+        bool hasSound(std::string);
+        bool loadSound(std::string filename, std::string name);
+        bool play(std::string name);
+        bool playMusic(std::string filename);
+    
+    private:
+        SoundManager() {};
+        ~SoundManager();
+        std::map<std::string, std::shared_ptr<sf::Sound>> sounds;
+        std::map<std::string, std::shared_ptr<sf::SoundBuffer>> buffers;
+        sf::Music music;
 };
 
 #endif
