@@ -16,6 +16,15 @@ features:
 * Music and sound effects
 * Randomization of ball mechanics
 
+###Media Credits
+
+Music created by freesound user [dAmbient](http://www.freesound.org/people/dAmbient/)
+and licensed under the [CC Attribution License](http://creativecommons.org/licenses/by/3.0/).
+
+Sound effects created using the awesome [JSFXR](http://github.grumdrig.com/jsfxr/).
+
+###Arkanoid
+
 For those of you retro gaming nuts, you'll notice that this version differs 
 pretty significantly from the original. The goal of the project isn't 
 to create a clone of the original game, but to create a game in similar style
