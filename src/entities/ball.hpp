@@ -19,7 +19,7 @@
 struct Ball {
 	sf::CircleShape shape;
 	sf::Vector2f velocity;
-	void Init(float mX, float mY); 
+	Ball(float mX, float mY); 
 	void update(const sf::Time& deltaTime);
 	float x();
 	float y();

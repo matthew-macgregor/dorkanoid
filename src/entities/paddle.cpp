@@ -11,7 +11,7 @@
 
 constexpr float paddleWidth{60.f}, paddleHeight{20.f}, paddleVelocity{600.f};
 
-void Paddle::Init(float mX, float mY) {
+Paddle::Paddle(float mX, float mY) {
 	shape.setPosition(mX, mY);
 	shape.setSize({paddleWidth, paddleHeight});
 	shape.setFillColor(Color::Blue);

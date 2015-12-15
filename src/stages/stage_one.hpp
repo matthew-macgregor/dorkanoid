@@ -14,6 +14,7 @@
 class StageOne : public Stage {
 	
 	public:
+		StageOne();
 		void Init();
 		void Update(const sf::Time& deltaTime);
 		void Draw(sf::RenderWindow& canvas);

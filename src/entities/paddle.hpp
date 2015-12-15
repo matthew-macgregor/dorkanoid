@@ -22,7 +22,7 @@ struct Paddle {
 	RectangleShape shape;
 	Vector2f velocity;
 	
-	void Init(float mX, float mY);
+	Paddle(float mX, float mY);
 	void update(const sf::Time dt);
 	float x();
 	float y();

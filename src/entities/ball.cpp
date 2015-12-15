@@ -9,7 +9,7 @@
 
 #include "ball.hpp"
 
-void Ball::Init(float mX, float mY) {
+Ball::Ball(float mX, float mY) {
 	shape.setPosition(mX, mY);
 	shape.setRadius(ballRadius);
 	shape.setFillColor(sf::Color::Red);

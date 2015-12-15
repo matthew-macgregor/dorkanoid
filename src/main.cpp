@@ -34,9 +34,8 @@ int main()
     soundManager.loadSound("media/bounce.wav", "bounce");
 	soundManager.playMusic("media/8-bit-loop-dAmbient.ogg");
 	
-	Stage* stage = new StageOne();
-    stage->Init();
-	
+	std::unique_ptr<Stage> stage(new StageOne);
+    
     sf::Clock clock;
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
     

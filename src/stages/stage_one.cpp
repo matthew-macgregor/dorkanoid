@@ -5,11 +5,13 @@
 #include "stage_one.hpp"
 #include <iostream>
 
-void StageOne::Init() {
+StageOne::StageOne() : 
+		ball(windowWidth / 2, windowHeight / 2),
+		paddle(windowWidth / 2, windowHeight / 1.15) {
 	
 	// Initialize game entities
-	ball.Init(windowWidth / 2, windowHeight / 2);
-	paddle.Init(windowWidth / 2, windowHeight / 1.15);
+	// ball.Init(windowWidth / 2, windowHeight / 2);
+	// paddle.Init(windowWidth / 2, windowHeight / 1.15);
     InitBricks();
 	
 	// Declare and load a font
@@ -69,7 +71,7 @@ void StageOne::Reset() {
 	
 	// Initialize game entities
 	// ball.Init(windowWidth / 2, windowHeight / 2);
-	paddle.Init(windowWidth / 2, windowHeight / 1.15);
+	// paddle.Init(windowWidth / 2, windowHeight / 1.15);
     InitBricks();
 	
 }
