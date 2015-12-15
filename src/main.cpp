@@ -27,19 +27,19 @@ int main()
     // Create the main window
     RenderWindow app(VideoMode(windowWidth, windowHeight), "Dorkanoid");
     app.setFramerateLimit(60);
-		
-	// Load sounds
+
+    // Load sounds
     SoundManager& soundManager = SoundManager::getInstance();
     soundManager.loadSound("media/bump.wav", "bump");
     soundManager.loadSound("media/bounce.wav", "bounce");
-	soundManager.playMusic("media/8-bit-loop-dAmbient.ogg");
-	
-	std::unique_ptr<Stage> stage(new StageOne);
+    soundManager.playMusic("media/8-bit-loop-dAmbient.ogg");
+
+    std::unique_ptr<Stage> stage(new StageOne);
     
     sf::Clock clock;
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
     
-	// Start the game loop
+    // Start the game loop
     while (app.isOpen())
     {
 
@@ -57,7 +57,7 @@ int main()
             stage->Update(TimePerFrame);
         }
         
-		// Draw
+        // Draw
         stage->Draw(app);
 
         // Update the window
