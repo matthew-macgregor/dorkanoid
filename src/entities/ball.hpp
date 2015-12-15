@@ -17,16 +17,16 @@
 
 
 struct Ball {
-	sf::CircleShape shape;
-	sf::Vector2f velocity;
-	Ball(float mX, float mY); 
-	void update(const sf::Time& deltaTime);
-	float x();
-	float y();
-	float left();
-	float right();
-	float top();
-	float bottom();
+    sf::CircleShape shape;
+    sf::Vector2f velocity;
+    Ball(float mX, float mY); 
+    void update(const sf::Time& deltaTime);
+    float x();
+    float y();
+    float left();
+    float right();
+    float top();
+    float bottom();
 };
 
 #endif

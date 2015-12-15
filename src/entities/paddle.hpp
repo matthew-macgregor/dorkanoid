@@ -19,18 +19,18 @@
 using namespace sf;
 
 struct Paddle {
-	RectangleShape shape;
-	Vector2f velocity;
-	
-	Paddle(float mX, float mY);
-	void update(const sf::Time dt);
-	float x();
-	float y();
-	float left();
-	float right();
-	float top();
-	float bottom();
-	bool collidesWith(Ball& ball);
+    RectangleShape shape;
+    Vector2f velocity;
+    
+    Paddle(float mX, float mY);
+    void update(const sf::Time dt);
+    float x();
+    float y();
+    float left();
+    float right();
+    float top();
+    float bottom();
+    bool collidesWith(Ball& ball);
 };
 
 #endif

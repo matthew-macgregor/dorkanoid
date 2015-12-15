@@ -22,16 +22,16 @@ constexpr float blockWidth{60.f}, blockHeight{20.f};
 
 struct Brick
 {
-	RectangleShape shape;
-	bool destroyed{false};
-	Brick(float mX, float mY); 
-	bool collidesWith(Ball& ball);
-	float x();
-	float y();
-	float left();
-	float right();
-	float top();
-	float bottom();
+    RectangleShape shape;
+    bool destroyed{false};
+    Brick(float mX, float mY); 
+    bool collidesWith(Ball& ball);
+    float x();
+    float y();
+    float left();
+    float right();
+    float top();
+    float bottom();
 };
 
 #endif
