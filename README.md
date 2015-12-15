@@ -1,3 +1,5 @@
+###Dorkanoid
+
 This **Arkanoid**-like game was inspired by the following Youtube tutorial by 
 Vittorio Romeo. It's a good introduction to the SFML library and uses C++ 11
 features. 
@@ -24,7 +26,7 @@ point and build your own! ;)
 
 [History of Arkanoid](https://en.wikipedia.org/wiki/Arkanoid)
 
-###Build:
+###Instructions to Build:
 
 While this game is theoretically cross-platform, at this point I've done all
 development on Linux (Ubuntu). To build the game on linux, install libsfml:
