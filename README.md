@@ -33,11 +33,12 @@ development on Linux (Ubuntu). To build the game on linux, install libsfml:
 
 	sudo apt-get install libsfml-dev build-essential
 	
-There is a makefile in the root directory. From the root of the project:
+I use a python script for building the project. It works with Python 2 or 3:
 
-	make
+	python build.py
 	
-This will build the application. 
+As with make, this script will only build the source files that have been 
+modified. 
 
 ###License:
 
