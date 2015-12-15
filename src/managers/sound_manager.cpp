@@ -10,12 +10,6 @@ SoundManager& SoundManager::getInstance() {
 }
 
 SoundManager::~SoundManager() {
-	for (auto const& x : sounds){
-		auto buffer = x.second->getBuffer();
-		delete buffer;
-		delete x.second;
-	}
-	
 	sounds.clear();
 }
 
@@ -25,19 +19,17 @@ bool SoundManager::hasSound(std::string name) {
 
 bool SoundManager::loadSound(std::string filename, std::string name) {
 	if( sounds.count(name) == 1 ) {
-		// If the name already exists in the dictionary, do not overwrite 
-		// the key (which will cause a memory leak) and indicate that the 
-		// operation failed.
 		return false;
 	}
 	
-	sf::SoundBuffer* buffer = new sf::SoundBuffer;
+	auto buffer = std::make_shared<sf::SoundBuffer>();
+	auto sound = std::make_shared<sf::Sound>();
+	
 	if (!buffer->loadFromFile(filename)) {
-		delete buffer;
+		// delete buffer;
 		return false;
 	}
 	
-	sf::Sound* sound = new sf::Sound;
 	sound->setBuffer(*buffer);
 	sounds[name] = sound;
     return true;

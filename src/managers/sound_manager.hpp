@@ -7,6 +7,7 @@
 
 #include <string>
 #include <map>
+#include <memory>
 #include <SFML/Audio.hpp>
 
 class SoundManager {
@@ -14,7 +15,6 @@ class SoundManager {
 	public:
 	    static SoundManager& getInstance();
 		
-		// Requires C++ 11
         SoundManager(SoundManager const&)    = delete;
         void operator=(SoundManager const&)  = delete;
 	
@@ -26,7 +26,7 @@ class SoundManager {
 	private:
 		SoundManager() {};
 		~SoundManager();
-		std::map<std::string, sf::Sound*> sounds;
+		std::map<std::string, std::shared_ptr<sf::Sound>> sounds;
 		sf::Music music;
 };
 
