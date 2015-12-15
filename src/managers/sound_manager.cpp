@@ -26,12 +26,12 @@ bool SoundManager::loadSound(std::string filename, std::string name) {
 	auto sound = std::make_shared<sf::Sound>();
 	
 	if (!buffer->loadFromFile(filename)) {
-		// delete buffer;
 		return false;
 	}
 	
 	sound->setBuffer(*buffer);
 	sounds[name] = sound;
+	buffers[name] = buffer;
     return true;
 }
 

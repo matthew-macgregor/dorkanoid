@@ -27,6 +27,7 @@ class SoundManager {
 		SoundManager() {};
 		~SoundManager();
 		std::map<std::string, std::shared_ptr<sf::Sound>> sounds;
+		std::map<std::string, std::shared_ptr<sf::SoundBuffer>> buffers;
 		sf::Music music;
 };
 
