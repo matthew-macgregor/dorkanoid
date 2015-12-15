@@ -9,20 +9,16 @@ StageOne::StageOne() :
         ball(windowWidth / 2, windowHeight / 2),
         paddle(windowWidth / 2, windowHeight / 1.15) {
     
-    // Initialize game entities
-    // ball.Init(windowWidth / 2, windowHeight / 2);
-    // paddle.Init(windowWidth / 2, windowHeight / 1.15);
     InitBricks();
     
     // Declare and load a font
     font.loadFromFile("media/VT323.ttf");
     
     // Create a text
-    scoreText = "Score = 0";
-    text = sf::Text(scoreText, font);
-    text.setCharacterSize(24);
-    text.setColor(sf::Color::Red);
-    text.setPosition( 10.f, 10.f );
+    scoreText = sf::Text("", font);
+    scoreText.setCharacterSize(24);
+    scoreText.setColor(sf::Color::Red);
+    scoreText.setPosition( 10.f, 10.f );
 }
 
 void StageOne::Update(const sf::Time& deltaTime) {
@@ -41,8 +37,7 @@ void StageOne::Update(const sf::Time& deltaTime) {
     }
     
     if( score > 0 ) {
-        scoreText = "Score = " + int2str(score);
-        text.setString(scoreText);
+        scoreText.setString("Score = " + int2str(score));
     }
 }
 
@@ -61,17 +56,13 @@ void StageOne::Draw(sf::RenderWindow& canvas) {
         }
     }
     
-    canvas.draw(text);
+    canvas.draw(scoreText);
 
 }
 
 void StageOne::Reset() {
     
     bricks.clear();
-    
-    // Initialize game entities
-    // ball.Init(windowWidth / 2, windowHeight / 2);
-    // paddle.Init(windowWidth / 2, windowHeight / 1.15);
     InitBricks();
     
 }

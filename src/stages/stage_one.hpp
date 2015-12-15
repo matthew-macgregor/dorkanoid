@@ -25,9 +25,8 @@ class StageOne : public Stage {
         Ball ball;
         Paddle paddle;
         sf::Font font;
-        sf::Text text;
+        sf::Text scoreText;
         std::vector<Brick> bricks;
-        std::string scoreText;
         int score = 0;
         bool isOnARoll = false;
         
