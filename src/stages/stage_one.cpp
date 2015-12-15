@@ -64,8 +64,14 @@ void StageOne::Draw(sf::RenderWindow& canvas) {
 }
 
 void StageOne::Reset() {
+	
 	bricks.clear();
-	Init();
+	
+	// Initialize game entities
+	// ball.Init(windowWidth / 2, windowHeight / 2);
+	paddle.Init(windowWidth / 2, windowHeight / 1.15);
+    InitBricks();
+	
 }
 
 bool StageOne::IsCompleted() {
