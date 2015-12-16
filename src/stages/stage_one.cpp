@@ -72,6 +72,7 @@ void StageOne::Reset() {
     
     bricks.clear();
     InitBricks();
+    score = 0;
     
 }
 
