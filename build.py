@@ -53,12 +53,12 @@ def copy_headers(header_list, hpp_dir):
             print("Nothing to do for {}".format(hpp))
     return changes
 
-def build_modules(src_list, obj_dir):
+def build_modules(src_list, obj_dir, changes_h):
     print("Building source...")
     changes = False
     for cpp in src_list:
         obj = os.path.join(obj_dir, cpp_to_obj(cpp))
-        if is_modified(cpp, obj):
+        if is_modified(cpp, obj) or changes_h:
             gpp = "g++ -Wall -Ibuild/include -g -std=c++11 -c {} -o {} -lsfml-window -lsfml-graphics -lsfml-system -lsfml-audio".format(cpp, obj)
             print(gpp)
             if os.system(gpp) != 0:
@@ -87,7 +87,7 @@ if __name__ == '__main__':
     impls, headers = find_cpp_files(source_dir)
     print(source_dir)
     changes_h = copy_headers(headers, hpp_dir)
-    changes_o = build_modules(impls, obj_dir)
+    changes_o = build_modules(impls, obj_dir, changes_h)
     exists = os.path.exists(exe)
     if changes_h or changes_o or not exists:
         link_objects(impls, obj_dir, exe)
