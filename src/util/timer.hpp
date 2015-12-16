@@ -1,3 +1,8 @@
+// Copyright (c) 2015 Matthew MacGregor
+// License: Academic Free License ("AFL") v. 3.0
+// AFL License page: http://opensource.org/licenses/AFL-3.0
+
+
 #ifndef _TIMER_HPP_
 #define _TIMER_HPP_
 
