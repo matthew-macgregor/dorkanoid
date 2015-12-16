@@ -26,6 +26,7 @@ paddle(windowWidth / 2, windowHeight / 1.15) {
     musicCreditsText.setColor(sf::Color::White);
     musicCreditsText.setPosition( 570.f, 10.f );
 
+    timer.SetCallback([](int ticks) { std::cout << "Ticks: " << ticks << std::endl; });
 }
 
 void StageOne::Update(const sf::Time& deltaTime) {
@@ -46,6 +47,8 @@ void StageOne::Update(const sf::Time& deltaTime) {
     if( score > 0 ) {
         scoreText.setString("Score = " + int2str(score));
     }
+    
+    timer.Update();
 }
 
 void StageOne::Draw(sf::RenderWindow& canvas) {

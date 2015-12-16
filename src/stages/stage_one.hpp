@@ -10,6 +10,7 @@
 #include "ball.hpp"
 #include "paddle.hpp"
 #include "brick.hpp"
+#include "timer.hpp"
 
 class StageOne : public Stage {
     
@@ -29,6 +30,7 @@ class StageOne : public Stage {
         std::vector<Brick> bricks;
         int score;
         bool isOnARoll;
+        Timer timer;
         
         void InitBricks();
 };
