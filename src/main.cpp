@@ -34,8 +34,7 @@ int main()
     soundManager.loadSound("media/bounce.wav", "bounce");
     soundManager.playMusic("media/8-bit-loop-dAmbient.ogg");
 
-    std::shared_ptr<Stage> stage = std::make_shared<StageOne>();
-    
+    std::unique_ptr<Stage> stage(new StageOne);
     sf::Clock clock;
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
     
