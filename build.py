@@ -29,9 +29,7 @@ def is_modified(src, dest):
     return srctm > objtm
 
 def mkdirectories(obj_dir = 'build/obj', hpp_dir = 'build/include'):    
-    # script_d = os.path.dirname(os.path.realpath(__file__))
-    # od = os.path.join(script_d, obj_dir)
-    # hd = os.path.join(script_d, hpp_dir)
+
     od, hd = (obj_dir, hpp_dir)
     if not os.path.exists(od):
         os.makedirs(od)
