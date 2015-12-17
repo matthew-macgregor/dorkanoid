@@ -25,14 +25,14 @@ struct Brick
     RectangleShape shape;
     bool destroyed{false};
     Brick(float mX, float mY); 
-    bool collidesWith(Ball& ball);
+    bool CollidesWith(Ball& ball);
     bool Regenerate();
-    float x();
-    float y();
-    float left();
-    float right();
-    float top();
-    float bottom();
+    float X();
+    float Y();
+    float Left();
+    float Right();
+    float Top();
+    float Bottom();
 };
 
 #endif

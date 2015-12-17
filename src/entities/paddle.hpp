@@ -23,14 +23,14 @@ struct Paddle {
     Vector2f velocity;
     
     Paddle(float mX, float mY);
-    void update(const sf::Time dt);
-    float x();
-    float y();
-    float left();
-    float right();
-    float top();
-    float bottom();
-    bool collidesWith(Ball& ball);
+    void Update(const sf::Time dt);
+    float X();
+    float Y();
+    float Left();
+    float Right();
+    float Top();
+    float Bottom();
+    bool CollidesWith(Ball& ball);
 };
 
 #endif

@@ -28,7 +28,7 @@ bool Brick::Regenerate() {
     return false;
 }
 
-bool Brick::collidesWith(Ball& ball) {
+bool Brick::CollidesWith(Ball& ball) {
     if(destroyed) return false;
     if(!isIntersecting(*this, ball)) return false;
     
@@ -37,10 +37,10 @@ bool Brick::collidesWith(Ball& ball) {
     
     this->destroyed = true;
     
-    float overlapLeft{ball.right() - this->left()};
-    float overlapRight{this->right() - ball.left()};
-    float overlapTop{ball.bottom() - this->top()};
-    float overlapBottom{this->bottom() - ball.top()};
+    float overlapLeft{ball.Right() - this->Left()};
+    float overlapRight{this->Right() - ball.Left()};
+    float overlapTop{ball.Bottom() - this->Top()};
+    float overlapBottom{this->Bottom() - ball.Top()};
     
     bool ballFromLeft(abs(overlapLeft) < abs(overlapRight));
     bool ballFromTop(abs(overlapTop) < abs(overlapBottom));
@@ -58,26 +58,26 @@ bool Brick::collidesWith(Ball& ball) {
     return true;
 }
 
-float Brick::x() {
+float Brick::X() {
     return shape.getPosition().x; 
 }
 
-float Brick::y() {
+float Brick::Y() {
     return shape.getPosition().y; 
 }
 
-float Brick::left() {
-    return x() - shape.getSize().x / 2.f;
+float Brick::Left() {
+    return X() - shape.getSize().x / 2.f;
 }
 
-float Brick::right(){ 
-    return x() + shape.getSize().x / 2.f;
+float Brick::Right(){ 
+    return X() + shape.getSize().x / 2.f;
 }
 
-float Brick::top() {
-    return y() - shape.getSize().y / 2.f;
+float Brick::Top() {
+    return Y() - shape.getSize().y / 2.f;
 }
 
-float Brick::bottom() {
-    return y() + shape.getSize().y / 2.f;
+float Brick::Bottom() {
+    return Y() + shape.getSize().y / 2.f;
 }

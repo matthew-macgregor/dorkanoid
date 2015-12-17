@@ -16,7 +16,7 @@ void Brickyard::InitBricks() {
 int Brickyard::CountCollisions(Ball& ball) {
     int collisions = 0;
     for(auto& brick : bricks) {
-        if(brick.collidesWith(ball)) {
+        if(brick.CollidesWith(ball)) {
             collisions++;
         }
     }

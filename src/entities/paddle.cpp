@@ -18,12 +18,12 @@ Paddle::Paddle(float mX, float mY) {
     shape.setOrigin(paddleWidth / 2.f, paddleHeight / 2.f);
 }
 
-void Paddle::update(const sf::Time dt) {
+void Paddle::Update(const sf::Time dt) {
     shape.move(velocity * dt.asSeconds());
 
-    if(Keyboard::isKeyPressed(Keyboard::Key::Left) && left() > 0) {
+    if(Keyboard::isKeyPressed(Keyboard::Key::Left) && Left() > 0) {
         velocity.x = -paddleVelocity;
-    } else if(Keyboard::isKeyPressed(Keyboard::Key::Right) && right() < windowWidth) {
+    } else if(Keyboard::isKeyPressed(Keyboard::Key::Right) && Right() < windowWidth) {
         velocity.x = paddleVelocity;
     } else {
         velocity.x = 0;
@@ -32,17 +32,17 @@ void Paddle::update(const sf::Time dt) {
     
     Vector2f pos = shape.getPosition();
     float halfWidth = shape.getSize().x / 2;
-    if( left() <= 0 ) {
+    if( Left() <= 0 ) {
         shape.setPosition(halfWidth, pos.y);
     }
     
-    if( right() >= windowWidth) {
+    if( Right() >= windowWidth) {
         shape.setPosition(windowWidth - halfWidth, pos.y);
     }
     
 }
 
-bool Paddle::collidesWith(Ball& mBall) {
+bool Paddle::CollidesWith(Ball& mBall) {
     if(!isIntersecting(*this, mBall)) return false;
     float random = generate_random( 1.0f, 1.2f );
     float ballVelocity = mBall.velocity.x * random;
@@ -51,26 +51,26 @@ bool Paddle::collidesWith(Ball& mBall) {
     return true;
 }
 
-float Paddle::x() {
+float Paddle::X() {
     return shape.getPosition().x; 
 }
 
-float Paddle::y() {
+float Paddle::Y() {
     return shape.getPosition().y; 
 }
 
-float Paddle::left() {
-    return x() - shape.getSize().x / 2.f;
+float Paddle::Left() {
+    return X() - shape.getSize().x / 2.f;
 }
 
-float Paddle::right(){ 
-    return x() + shape.getSize().x / 2.f;
+float Paddle::Right(){ 
+    return X() + shape.getSize().x / 2.f;
 }
 
-float Paddle::top() {
-    return y() - shape.getSize().y / 2.f;
+float Paddle::Top() {
+    return Y() - shape.getSize().y / 2.f;
 }
 
-float Paddle::bottom() {
-    return y() + shape.getSize().y / 2.f;
+float Paddle::Bottom() {
+    return Y() + shape.getSize().y / 2.f;
 }

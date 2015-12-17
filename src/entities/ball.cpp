@@ -18,22 +18,22 @@ Ball::Ball(float mX, float mY) {
     velocity = sf::Vector2f{-ballVelocity * r, -ballVelocity * r};
 }
 
-void Ball::update(const sf::Time& deltaTime) { 
+void Ball::Update(const sf::Time& deltaTime) { 
     shape.move(velocity * deltaTime.asSeconds());
     bool bounced = false;
     
-    if(left() < 0) { 
+    if(Left() < 0) { 
         velocity.x = ballVelocity;
         bounced = true;
-    } else if (right() > windowWidth) {
+    } else if (Right() > windowWidth) {
         velocity.x = -ballVelocity;
         bounced = true;
     }
     
-    if(top() < 0) {
+    if(Top() < 0) {
         velocity.y = ballVelocity;
         bounced = true;
-    } else if(bottom() > windowHeight) {
+    } else if(Bottom() > windowHeight) {
         velocity.y = -ballVelocity;
         bounced = true;
     }
@@ -45,26 +45,26 @@ void Ball::update(const sf::Time& deltaTime) {
 
 }
 
-float Ball::x() {
+float Ball::X() {
     return shape.getPosition().x; 
 }
 
-float Ball::y() {
+float Ball::Y() {
     return shape.getPosition().y; 
 }
 
-float Ball::left() {
-    return x() - shape.getRadius();
+float Ball::Left() {
+    return X() - shape.getRadius();
 }
 
-float Ball::right(){ 
-    return x() + shape.getRadius();
+float Ball::Right(){ 
+    return X() + shape.getRadius();
 }
 
-float Ball::top() {
-    return y() - shape.getRadius();
+float Ball::Top() {
+    return Y() - shape.getRadius();
 }
 
-float Ball::bottom() {
-    return y() + shape.getRadius();
+float Ball::Bottom() {
+    return Y() + shape.getRadius();
 }

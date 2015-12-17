@@ -32,9 +32,9 @@ paddle(windowWidth / 2, windowHeight / 1.15) {
 }
 
 void StageOne::Update(const sf::Time& deltaTime) {
-    ball.update(deltaTime);
-    paddle.update(deltaTime);
-    if(paddle.collidesWith(ball)) {
+    ball.Update(deltaTime);
+    paddle.Update(deltaTime);
+    if(paddle.CollidesWith(ball)) {
         isOnARoll = false;
     }
     
