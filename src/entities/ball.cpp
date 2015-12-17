@@ -14,7 +14,7 @@ Ball::Ball(float mX, float mY) {
     shape.setRadius(ballRadius);
     shape.setFillColor(sf::Color::Red);
     shape.setOrigin(ballRadius, ballRadius);
-    float r = _floatrand(1.0f, 1.25f);
+    float r = generate_random(1.0f, 1.25f);
     velocity = sf::Vector2f{-ballVelocity * r, -ballVelocity * r};
 }
 

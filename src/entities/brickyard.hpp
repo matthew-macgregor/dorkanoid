@@ -18,7 +18,7 @@ class Brickyard {
         int BricksRemaining();
     private:
         void InitBricks();
-        std::vector<Brick> bricks;
+        std::vector<Brick> bricks; 
 };
 
 #endif 

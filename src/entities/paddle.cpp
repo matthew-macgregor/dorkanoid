@@ -44,7 +44,7 @@ void Paddle::update(const sf::Time dt) {
 
 bool Paddle::collidesWith(Ball& mBall) {
     if(!isIntersecting(*this, mBall)) return false;
-    float random = _floatrand( 1.0f, 1.2f );
+    float random = generate_random( 1.0f, 1.2f );
     float ballVelocity = mBall.velocity.x * random;
     mBall.velocity.y = -mBall.velocity.y * random;
     mBall.velocity.x = ballVelocity;

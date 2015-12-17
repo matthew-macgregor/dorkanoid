@@ -8,6 +8,7 @@
 #include <random>
 #include <ctime>
 
-float _floatrand(float min, float max); 
+float generate_random(float min, float max);
+int generate_random(int min, int max); 
 
 #endif

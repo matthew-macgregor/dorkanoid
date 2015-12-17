@@ -25,8 +25,7 @@ int Brickyard::CountCollisions(Ball& ball) {
 
 void Brickyard::RegenerateBrick() {
     for( auto& brick : bricks ) {
-        if( brick.destroyed == true ) {
-            brick.destroyed = false;
+        if( brick.Regenerate() ) {
             break;
         }
     }

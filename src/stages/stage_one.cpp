@@ -26,7 +26,7 @@ paddle(windowWidth / 2, windowHeight / 1.15) {
 
     timer.SetCallback([this](int ticks) {
         if(ticks % 360 == 0) {
-            brickyard.RestoreBrick();
+            brickyard.RegenerateBrick();
         }
     });
 }

@@ -16,6 +16,18 @@ Brick::Brick(float mX, float mY) {
     shape.setOrigin(blockWidth / 2.f, blockHeight / 2.f);
 }
 
+bool Brick::Regenerate() {
+    
+    if( destroyed ) {
+        if( generate_random(1,5) == 5 ) {
+            this->destroyed = false;
+            return true;
+        }
+    }
+    
+    return false;
+}
+
 bool Brick::collidesWith(Ball& ball) {
     if(destroyed) return false;
     if(!isIntersecting(*this, ball)) return false;
@@ -36,7 +48,7 @@ bool Brick::collidesWith(Ball& ball) {
     float minOverlapX{ballFromLeft ? overlapLeft : overlapRight};
     float minOverlapY{ballFromTop ? overlapTop : overlapBottom};
     
-    float random = _floatrand( 1.0f, 1.2f );
+    float random = generate_random( 1.0f, 1.2f );
     if(abs(minOverlapX) < abs(minOverlapY)) {
         ball.velocity.x = (ballFromLeft ? -ballVelocity : ballVelocity) * random;
     } else {

@@ -26,6 +26,7 @@ struct Brick
     bool destroyed{false};
     Brick(float mX, float mY); 
     bool collidesWith(Ball& ball);
+    bool Regenerate();
     float x();
     float y();
     float left();
