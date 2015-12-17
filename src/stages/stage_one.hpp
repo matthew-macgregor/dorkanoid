@@ -9,7 +9,7 @@
 #include "stage.hpp"
 #include "ball.hpp"
 #include "paddle.hpp"
-#include "brick.hpp"
+#include "brickyard.hpp"
 #include "timer.hpp"
 
 class StageOne : public Stage {
@@ -27,12 +27,12 @@ class StageOne : public Stage {
         sf::Font font;
         Ball ball;
         Paddle paddle;
-        std::vector<Brick> bricks;
+        Brickyard brickyard;
         int score;
         bool isOnARoll;
         Timer timer;
         
-        void InitBricks();
+        
 };
 
 #endif

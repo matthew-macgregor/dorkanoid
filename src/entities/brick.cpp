@@ -17,7 +17,7 @@ Brick::Brick(float mX, float mY) {
 }
 
 bool Brick::collidesWith(Ball& ball) {
-    if(destroyed)return false;
+    if(destroyed) return false;
     if(!isIntersecting(*this, ball)) return false;
     
     SoundManager& soundManager = SoundManager::getInstance();

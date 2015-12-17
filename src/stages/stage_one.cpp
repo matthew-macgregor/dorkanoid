@@ -9,8 +9,6 @@ StageOne::StageOne() :
 ball(windowWidth / 2, windowHeight / 2),
 paddle(windowWidth / 2, windowHeight / 1.15) {
     
-    InitBricks();
-    
     // Declare and load a font
     font.loadFromFile("media/VT323.ttf");
     
@@ -26,7 +24,11 @@ paddle(windowWidth / 2, windowHeight / 1.15) {
     musicCreditsText.setColor(sf::Color::White);
     musicCreditsText.setPosition( 570.f, 10.f );
 
-    timer.SetCallback([](int ticks) { std::cout << "Ticks: " << ticks << std::endl; });
+    timer.SetCallback([this](int ticks) {
+        if(ticks % 360 == 0) {
+            brickyard.RestoreBrick();
+        }
+    });
 }
 
 void StageOne::Update(const sf::Time& deltaTime) {
@@ -36,17 +38,14 @@ void StageOne::Update(const sf::Time& deltaTime) {
         isOnARoll = false;
     }
     
-    // Check collisions
-    for(auto& brick : bricks) {
-        if(brick.collidesWith(ball)) {
-            score += (isOnARoll) ? 2 : 1;
-            isOnARoll = true;
-        }
+    int collisionCount = brickyard.CountCollisions(ball);
+    if( collisionCount > 0 ) {
+        if( isOnARoll ) { collisionCount *= 2; }
+        score += collisionCount;
+        isOnARoll = true;
     }
     
-    if( score > 0 ) {
-        scoreText.setString("Score = " + int2str(score));
-    }
+    scoreText.setString("Score = " + int2str(score));
     
     timer.Update();
 }
@@ -55,40 +54,21 @@ void StageOne::Draw(sf::RenderWindow& canvas) {
     
     // Clear screen
     canvas.clear();
-
     canvas.draw(scoreText);
     canvas.draw(musicCreditsText);
-
-    // Draw instructions
     canvas.draw(ball.shape);
     canvas.draw(paddle.shape);
-    
-    for(auto& brick : bricks) { 
-        if( brick.destroyed == false ) {
-            canvas.draw(brick.shape);
-        }
-    }
+    brickyard.Draw(canvas);
     
 }
 
 void StageOne::Reset() {
-    
-    bricks.clear();
-    InitBricks();
+    brickyard.Reset();
     score = 0;
-    
+    isOnARoll = false;
 }
 
 bool StageOne::IsCompleted() {
-    unsigned int count = count_if(bricks.begin(), bricks.end(), [](Brick& brick) {  return brick.destroyed; });
-    return (count == bricks.size());
+    return ( brickyard.BricksRemaining() == 0 );
 }
 
-void StageOne::InitBricks() {
-    for( int iX{0}; iX < countBlocksX; ++iX ) {
-        for( int iY{0}; iY < countBlocksY; ++iY) {
-            bricks.emplace_back((iX + 1) * (blockWidth + 3) + 22,
-                                (iY + 3) * (blockHeight + 3));
-        }
-    }
-}
