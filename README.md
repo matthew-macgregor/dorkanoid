@@ -16,6 +16,8 @@ features:
 * Music and sound effects
 * Randomization of ball mechanics
 
+![Screenshot](media/screenshot.jpeg)
+
 ###Media Credits
 
 Music created by freesound user [dAmbient](http://www.freesound.org/people/dAmbient/)
