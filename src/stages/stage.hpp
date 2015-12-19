@@ -7,7 +7,8 @@
 
 #include <SFML/Graphics.hpp>
 
-class Stage {
+class Stage 
+{
 
     public:         
         virtual void Update(const sf::Time& deltaTime) = 0;

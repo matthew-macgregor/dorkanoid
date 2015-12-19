@@ -10,18 +10,19 @@
 #include <memory>
 #include <SFML/Audio.hpp>
 
-class SoundManager {
+class SoundManager 
+{
     
     public:
-        static SoundManager& getInstance();
+        static SoundManager& GetInstance();
         
         SoundManager(SoundManager const&)    = delete;
         void operator=(SoundManager const&)  = delete;
     
-        bool hasSound(std::string);
-        bool loadSound(std::string filename, std::string name);
-        bool play(std::string name);
-        bool playMusic(std::string filename);
+        bool HasSound(std::string);
+        bool LoadSound(std::string filename, std::string name);
+        bool Play(std::string name);
+        bool PlayMusic(std::string filename);
     
     private:
         SoundManager() {};

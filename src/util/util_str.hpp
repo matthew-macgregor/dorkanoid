@@ -8,6 +8,6 @@
 #include <sstream>
 
 // Converts an int into a string
-std::string int2str(int x);
+std::string Int2Str(int x);
 
 #endif

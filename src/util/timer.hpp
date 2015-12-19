@@ -8,7 +8,8 @@
 
 #include <functional>
 
-class Timer {
+class Timer 
+{
     
     public:
         void Update();

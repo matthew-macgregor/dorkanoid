@@ -12,7 +12,8 @@ using namespace sf;
 
 const sf::Time TimePerFrame = sf::seconds(1.f/60.f);
 
-void processEvents(RenderWindow& app) {
+void processEvents(RenderWindow& app) 
+{
     // Process events
     sf::Event event;
     while (app.pollEvent(event))
@@ -29,10 +30,10 @@ int main()
     app.setFramerateLimit(60);
 
     // Load sounds
-    SoundManager& soundManager = SoundManager::getInstance();
-    soundManager.loadSound("media/bump.wav", "bump");
-    soundManager.loadSound("media/bounce.wav", "bounce");
-    soundManager.playMusic("media/8-bit-loop-dAmbient.ogg");
+    SoundManager& soundManager = SoundManager::GetInstance();
+    soundManager.LoadSound("media/bump.wav", "bump");
+    soundManager.LoadSound("media/bounce.wav", "bounce");
+    soundManager.PlayMusic("media/8-bit-loop-dAmbient.ogg");
 
     std::unique_ptr<Stage> stage(new StageOne);
     sf::Clock clock;
@@ -48,7 +49,8 @@ int main()
         timeSinceLastUpdate += clock.restart();
         
         // sf::Time deltaTime = 
-        while( timeSinceLastUpdate > TimePerFrame ) {
+        while(timeSinceLastUpdate > TimePerFrame) 
+        {
         
             timeSinceLastUpdate -= TimePerFrame;
             processEvents(app);
@@ -62,7 +64,8 @@ int main()
         // Update the window
         app.display();
         
-        if( stage->IsCompleted() ) {
+        if(stage->IsCompleted()) 
+        {
             stage->Reset();
         }
     }

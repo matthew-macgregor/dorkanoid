@@ -10,7 +10,8 @@
 #ifndef _UTIL_INTERSECTION_HPP_
 #define _UTIL_INTERSECTION_HPP_
 
-template<class T1, class T2> bool isIntersecting(T1& mA, T2& mB) {
+template<class T1, class T2> bool IsIntersecting(T1& mA, T2& mB) 
+{
     return mA.Right() >= mB.Left() && mA.Left() <= mB.Right()
             && mA.Bottom() >= mB.Top() && mA.Top() <= mB.Bottom();
 }

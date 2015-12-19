@@ -9,62 +9,77 @@
 
 #include "ball.hpp"
 
-Ball::Ball(float mX, float mY) {
+Ball::Ball(float mX, float mY) 
+{
     shape.setPosition(mX, mY);
     shape.setRadius(ballRadius);
     shape.setFillColor(sf::Color::Red);
     shape.setOrigin(ballRadius, ballRadius);
-    float r = generate_random(1.0f, 1.25f);
+    float r = GenerateRandom(1.0f, 1.25f);
     velocity = sf::Vector2f{-ballVelocity * r, -ballVelocity * r};
 }
 
-void Ball::Update(const sf::Time& deltaTime) { 
+void Ball::Update(const sf::Time& deltaTime) 
+{ 
     shape.move(velocity * deltaTime.asSeconds());
     bool bounced = false;
     
-    if(Left() < 0) { 
+    if(Left() < 0) 
+    { 
         velocity.x = ballVelocity;
         bounced = true;
-    } else if (Right() > windowWidth) {
+    } 
+    else if (Right() > windowWidth) 
+    {
         velocity.x = -ballVelocity;
         bounced = true;
     }
     
-    if(Top() < 0) {
+    if(Top() < 0) 
+    {
         velocity.y = ballVelocity;
         bounced = true;
-    } else if(Bottom() > windowHeight) {
+    } 
+    else if(Bottom() > windowHeight) 
+    {
         velocity.y = -ballVelocity;
         bounced = true;
     }
     
-    if( bounced ) {
-        SoundManager& soundManager = SoundManager::getInstance();
-        soundManager.play("bounce");
+    if(bounced) 
+    {
+        SoundManager& soundManager = SoundManager::GetInstance();
+        soundManager.Play("bounce");
     }
 
 }
 
-float Ball::X() {
+float Ball::X() 
+{
     return shape.getPosition().x; 
 }
 
-float Ball::Y() {
+float Ball::Y() 
+{
     return shape.getPosition().y; 
 }
 
-float Ball::Left() {
+float Ball::Left() 
+{
     return X() - shape.getRadius();
 }
 
-float Ball::Right(){ 
+float Ball::Right()
+{ 
     return X() + shape.getRadius();
 }
 
-float Ball::Top() {
+float Ball::Top() 
+{
     return Y() - shape.getRadius();
 }
 
-float Ball::Bottom() {
+float Ball::Bottom() 
+{
     return Y() + shape.getRadius();
 }

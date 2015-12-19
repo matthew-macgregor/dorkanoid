@@ -18,7 +18,8 @@
 
 using namespace sf;
 
-struct Paddle {
+struct Paddle 
+{
     RectangleShape shape;
     Vector2f velocity;
     

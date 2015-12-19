@@ -11,66 +11,82 @@
 
 constexpr float paddleWidth{60.f}, paddleHeight{20.f}, paddleVelocity{600.f};
 
-Paddle::Paddle(float mX, float mY) {
+Paddle::Paddle(float mX, float mY) 
+{
     shape.setPosition(mX, mY);
     shape.setSize({paddleWidth, paddleHeight});
     shape.setFillColor(Color::Blue);
     shape.setOrigin(paddleWidth / 2.f, paddleHeight / 2.f);
 }
 
-void Paddle::Update(const sf::Time dt) {
+void Paddle::Update(const sf::Time dt) 
+{
     shape.move(velocity * dt.asSeconds());
 
-    if(Keyboard::isKeyPressed(Keyboard::Key::Left) && Left() > 0) {
+    if(Keyboard::isKeyPressed(Keyboard::Key::Left) && Left() > 0) 
+    {
         velocity.x = -paddleVelocity;
-    } else if(Keyboard::isKeyPressed(Keyboard::Key::Right) && Right() < windowWidth) {
+    } 
+    else if(Keyboard::isKeyPressed(Keyboard::Key::Right) && Right() < windowWidth) 
+    {
         velocity.x = paddleVelocity;
-    } else {
+    } 
+    else 
+    {
         velocity.x = 0;
     }
     
     
     Vector2f pos = shape.getPosition();
     float halfWidth = shape.getSize().x / 2;
-    if( Left() <= 0 ) {
+    if(Left() <= 0) 
+    {
         shape.setPosition(halfWidth, pos.y);
     }
     
-    if( Right() >= windowWidth) {
+    if( Right() >= windowWidth) 
+    {
         shape.setPosition(windowWidth - halfWidth, pos.y);
     }
     
 }
 
-bool Paddle::CollidesWith(Ball& mBall) {
-    if(!isIntersecting(*this, mBall)) return false;
-    float random = generate_random( 1.0f, 1.2f );
+bool Paddle::CollidesWith(Ball& mBall) 
+{
+    if(!IsIntersecting(*this, mBall)) return false;
+    float random = GenerateRandom( 1.0f, 1.2f );
     float ballVelocity = mBall.velocity.x * random;
     mBall.velocity.y = -mBall.velocity.y * random;
     mBall.velocity.x = ballVelocity;
     return true;
 }
 
-float Paddle::X() {
+float Paddle::X() 
+{
     return shape.getPosition().x; 
 }
 
-float Paddle::Y() {
+float Paddle::Y() 
+{
     return shape.getPosition().y; 
 }
 
-float Paddle::Left() {
+float Paddle::Left() 
+{
     return X() - shape.getSize().x / 2.f;
 }
 
-float Paddle::Right(){ 
+float Paddle::Right()
+{ 
     return X() + shape.getSize().x / 2.f;
 }
 
-float Paddle::Top() {
+float Paddle::Top() 
+{
     return Y() - shape.getSize().y / 2.f;
 }
 
-float Paddle::Bottom() {
+float Paddle::Bottom() 
+{
     return Y() + shape.getSize().y / 2.f;
 }

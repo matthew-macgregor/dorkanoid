@@ -6,8 +6,9 @@
 #include <iostream>
 
 StageOne::StageOne() :       
-ball(windowWidth / 2, windowHeight / 2),
-paddle(windowWidth / 2, windowHeight / 1.15) {
+    ball(windowWidth / 2, windowHeight / 2),
+    paddle(windowWidth / 2, windowHeight / 1.15) 
+{
     
     // Declare and load a font
     font.loadFromFile("media/VT323.ttf");
@@ -24,33 +25,39 @@ paddle(windowWidth / 2, windowHeight / 1.15) {
     musicCreditsText.setColor(sf::Color::White);
     musicCreditsText.setPosition( 570.f, 10.f );
 
-    timer.SetCallback([this](int ticks) {
-        if(ticks % 360 == 0) {
+    timer.SetCallback([this](int ticks) 
+    {
+        if(ticks % 360 == 0) 
+        {
             brickyard.RegenerateBrick();
         }
     });
 }
 
-void StageOne::Update(const sf::Time& deltaTime) {
+void StageOne::Update(const sf::Time& deltaTime) 
+{
     ball.Update(deltaTime);
     paddle.Update(deltaTime);
-    if(paddle.CollidesWith(ball)) {
+    if(paddle.CollidesWith(ball)) 
+    {
         isOnARoll = false;
     }
     
     int collisionCount = brickyard.CountCollisions(ball);
-    if( collisionCount > 0 ) {
+    if(collisionCount > 0) 
+    {
         if( isOnARoll ) { collisionCount *= 2; }
         score += collisionCount;
         isOnARoll = true;
     }
     
-    scoreText.setString("Score = " + int2str(score));
+    scoreText.setString("Score = " + Int2Str(score));
     
     timer.Update();
 }
 
-void StageOne::Draw(sf::RenderWindow& canvas) {
+void StageOne::Draw(sf::RenderWindow& canvas) 
+{
     
     // Clear screen
     canvas.clear();
@@ -62,13 +69,15 @@ void StageOne::Draw(sf::RenderWindow& canvas) {
     
 }
 
-void StageOne::Reset() {
+void StageOne::Reset() 
+{
     brickyard.Reset();
     score = 0;
     isOnARoll = false;
 }
 
-bool StageOne::IsCompleted() {
-    return ( brickyard.BricksRemaining() == 0 );
+bool StageOne::IsCompleted() 
+{
+    return (brickyard.BricksRemaining() == 0);
 }
 

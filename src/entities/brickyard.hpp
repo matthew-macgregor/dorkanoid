@@ -7,7 +7,8 @@
 #include "brick.hpp"
 #include "constants.h"
 
-class Brickyard {
+class Brickyard 
+{
     public:
         Brickyard();
         ~Brickyard(){};

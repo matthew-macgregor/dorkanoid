@@ -12,7 +12,8 @@
 #include "brickyard.hpp"
 #include "timer.hpp"
 
-class StageOne : public Stage {
+class StageOne : public Stage 
+{
     
     public:
         StageOne();

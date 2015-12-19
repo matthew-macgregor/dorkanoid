@@ -4,28 +4,34 @@
 
 #include "sound_manager.hpp"
 
-SoundManager& SoundManager::getInstance() {
+SoundManager& SoundManager::GetInstance() 
+{
     static SoundManager instance; // Guaranteed to be destroyed.
     return instance;
 }
 
-SoundManager::~SoundManager() {
+SoundManager::~SoundManager() 
+{
     sounds.clear();
 }
 
-bool SoundManager::hasSound(std::string name) {
+bool SoundManager::HasSound(std::string name) 
+{
     return ( sounds.count(name) == 1 );
 }
 
-bool SoundManager::loadSound(std::string filename, std::string name) {
-    if( sounds.count(name) == 1 ) {
+bool SoundManager::LoadSound(std::string filename, std::string name) 
+{
+    if(sounds.count(name) == 1) 
+    {
         return false;
     }
     
     auto buffer = std::make_shared<sf::SoundBuffer>();
     auto sound = std::make_shared<sf::Sound>();
     
-    if (!buffer->loadFromFile(filename)) {
+    if (!buffer->loadFromFile(filename)) 
+    {
         return false;
     }
     
@@ -35,11 +41,16 @@ bool SoundManager::loadSound(std::string filename, std::string name) {
     return true;
 }
 
-bool SoundManager::play(std::string name) {
-    if( sounds.count(name) == 0 ) {
+bool SoundManager::Play(std::string name) 
+{
+    if(sounds.count(name) == 0) 
+    {
         return false;
-    } else {
-        if( sounds[name] != NULL ) {
+    } 
+    else 
+    {
+        if(sounds[name] != NULL) 
+        {
             sounds[name]->play();
             return true;
         }
@@ -48,7 +59,8 @@ bool SoundManager::play(std::string name) {
     }
 }
 
-bool SoundManager::playMusic(std::string filename) {
+bool SoundManager::PlayMusic(std::string filename) 
+{
     
     // Open it from an audio file
     if (!music.openFromFile(filename))

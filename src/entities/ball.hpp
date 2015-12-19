@@ -16,7 +16,8 @@
 #include "sound_manager.hpp"
 
 
-struct Ball {
+struct Ball 
+{
     sf::CircleShape shape;
     sf::Vector2f velocity;
     Ball(float mX, float mY); 

@@ -9,17 +9,21 @@
 
 #include "brick.hpp"
 
-Brick::Brick(float mX, float mY) {
+Brick::Brick(float mX, float mY) 
+{
     shape.setPosition(mX, mY);
     shape.setSize({blockWidth, blockHeight});
     shape.setFillColor(Color::Yellow);
     shape.setOrigin(blockWidth / 2.f, blockHeight / 2.f);
 }
 
-bool Brick::Regenerate() {
+bool Brick::Regenerate() 
+{
     
-    if( destroyed ) {
-        if( generate_random(1,5) == 5 ) {
+    if(destroyed) 
+    {
+        if(GenerateRandom(1,5) == 5) 
+        {
             this->destroyed = false;
             return true;
         }
@@ -28,12 +32,13 @@ bool Brick::Regenerate() {
     return false;
 }
 
-bool Brick::CollidesWith(Ball& ball) {
+bool Brick::CollidesWith(Ball& ball) 
+{
     if(destroyed) return false;
-    if(!isIntersecting(*this, ball)) return false;
+    if(!IsIntersecting(*this, ball)) return false;
     
-    SoundManager& soundManager = SoundManager::getInstance();
-    soundManager.play("bump");
+    SoundManager& soundManager = SoundManager::GetInstance();
+    soundManager.Play("bump");
     
     this->destroyed = true;
     
@@ -48,36 +53,45 @@ bool Brick::CollidesWith(Ball& ball) {
     float minOverlapX{ballFromLeft ? overlapLeft : overlapRight};
     float minOverlapY{ballFromTop ? overlapTop : overlapBottom};
     
-    float random = generate_random( 1.0f, 1.2f );
-    if(abs(minOverlapX) < abs(minOverlapY)) {
+    float random = GenerateRandom(1.0f, 1.2f);
+    if(abs(minOverlapX) < abs(minOverlapY)) 
+    {
         ball.velocity.x = (ballFromLeft ? -ballVelocity : ballVelocity) * random;
-    } else {
+    } 
+    else 
+    {
         ball.velocity.y = (ballFromTop ? -ballVelocity : ballVelocity) * random;
     }
     
     return true;
 }
 
-float Brick::X() {
+float Brick::X() 
+{
     return shape.getPosition().x; 
 }
 
-float Brick::Y() {
+float Brick::Y() 
+{
     return shape.getPosition().y; 
 }
 
-float Brick::Left() {
+float Brick::Left() 
+{
     return X() - shape.getSize().x / 2.f;
 }
 
-float Brick::Right(){ 
+float Brick::Right()
+{ 
     return X() + shape.getSize().x / 2.f;
 }
 
-float Brick::Top() {
+float Brick::Top() 
+{
     return Y() - shape.getSize().y / 2.f;
 }
 
-float Brick::Bottom() {
+float Brick::Bottom() 
+{
     return Y() + shape.getSize().y / 2.f;
 }
