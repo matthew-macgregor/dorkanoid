@@ -22,7 +22,7 @@ bool Brick::Regenerate()
     
     if(destroyed) 
     {
-        if(GenerateRandom(1,5) == 5) 
+        if(GenerateRandomInt(1,5) == 5) 
         {
             this->destroyed = false;
             return true;
@@ -53,7 +53,7 @@ bool Brick::CollidesWith(Ball& ball)
     float minOverlapX{ballFromLeft ? overlapLeft : overlapRight};
     float minOverlapY{ballFromTop ? overlapTop : overlapBottom};
     
-    float random = GenerateRandom(1.0f, 1.2f);
+    float random = GenerateRandomFloat(1.0f, 1.2f);
     if(abs(minOverlapX) < abs(minOverlapY)) 
     {
         ball.velocity.x = (ballFromLeft ? -ballVelocity : ballVelocity) * random;
