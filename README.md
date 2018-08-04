@@ -1,4 +1,4 @@
-###Dorkanoid
+### Dorkanoid
 
 This **Arkanoid**-like game was inspired by the following Youtube tutorial by 
 Vittorio Romeo. It's a good introduction to the SFML library and uses C++ 11
