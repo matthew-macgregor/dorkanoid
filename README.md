@@ -18,14 +18,14 @@ features:
 
 ![Screenshot](media/screenshot.jpeg)
 
-###Media Credits
+### Media Credits
 
 Music created by freesound user [dAmbient](http://www.freesound.org/people/dAmbient/)
 and licensed under the [CC Attribution License](http://creativecommons.org/licenses/by/3.0/).
 
 Sound effects created using the awesome [JSFXR](http://github.grumdrig.com/jsfxr/).
 
-###Arkanoid
+### Arkanoid
 
 For those of you retro gaming nuts, you'll notice that this version differs 
 pretty significantly from the original. The goal of the project isn't 
@@ -37,7 +37,7 @@ point and build your own! ;)
 
 [History of Arkanoid](https://en.wikipedia.org/wiki/Arkanoid)
 
-###Instructions to Build:
+### Instructions to Build:
 
 While this game is theoretically cross-platform, at this point I've done all
 development on Linux (Ubuntu). To build the game on linux, install libsfml:
@@ -51,7 +51,7 @@ I use a python script for building the project. It works with Python 2 or 3:
 As with make, this script will only build the source files that have been 
 modified. 
 
-###License:
+### License:
 
 Original code distributed under the following license terms:
 
