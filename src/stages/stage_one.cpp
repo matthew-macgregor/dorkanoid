@@ -9,7 +9,8 @@ StageOne::StageOne() :
     ball(windowWidth / 2, windowHeight / 2),
     paddle(windowWidth / 2, windowHeight / 1.15) 
 {
-    
+    score = 0;
+
     // Declare and load a font
     font.loadFromFile("media/VT323.ttf");
     
