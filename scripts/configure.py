@@ -3,6 +3,7 @@ from os import system, listdir
 import os
 from os.path import isfile, join
 from sys import platform
+import argparse
 
 # Note -s-d as part of the lib names. See SFML docs on that.
 # constants.h           dorkanoid-cl\src\constants.h                   577
@@ -54,17 +55,10 @@ media_dir = os.path.join(project_dir, 'media')
 # https://docs.python.org/3/library/sys.html#sys.platform
 # linux, darwin, win32, cygwin
 # startswith('freebsd')
-print(f'Platform: {platform}')
-print(f'Project dir: {project_dir}')
-print(f'Build dir: {build_dir}')
+print(f'Platform = {platform}')
+print(f'Project dir = {project_dir}')
+print(f'Build dir = {build_dir}')
 os.makedirs(build_dir, exist_ok=True)
-
-sfml_include = ''
-sfml_libpath = ''
-if platform == 'win32':
-    # TODO: improve this for other platforms
-    sfml_include = os.path.join(project_dir, 'x64-windows-static\include')
-    sfml_libpath = os.path.join(project_dir, 'x64-windows-static\lib')
 
 media = [f for f in listdir(media_dir) if isfile(join(media_dir, f))]
 
@@ -72,14 +66,16 @@ def src_to_obj(src: str, builddir: str = '$builddir') -> str:
     src = '-'.join(src.split('/')[1:])
     return os.path.join(builddir, os.path.splitext(src)[0] + '.obj')
 
-def configure_for_win32_msvc(ninja):
+def configure_for_win32_msvc(ninja, args):
     libs = (
         # windows system libs
-        'winmm.lib',
         'gdi32.lib',
         'user32.lib',
         'ole32.lib',
         'shell32.lib',
+        'winmm.lib',
+
+        # sfml libraries
         'ogg.lib',
         'OpenAL32.lib',
         'brotlidec-static.lib',
@@ -99,25 +95,37 @@ def configure_for_win32_msvc(ninja):
         'sfml-graphics-s.lib',
         'sfml-window-s.lib',
         'sfml-audio-s.lib',
-        'sfml-network-s.lib',
+        'sfml-main.lib',
+        # 'sfml-network-s.lib',
+        # 'ws2_32.lib',
     )
+
+    sfml_root_path = args.sfml_path if args.sfml_path else join(project_dir, 'x64-windows-static')
+    sfml_include_path = join(sfml_root_path, 'include')
+    sfml_libpath = join(sfml_root_path, 'lib')
+    print(f'sfml_include_path = {sfml_include_path}')
+    print(f'sfml_libpath = {sfml_libpath}')
 
     ninja.variable('cc', 'cl')
     ninja.variable('link', 'link')
     ninja.variable('cppflags', '/EHsc /std:c++17 /MT /D SFML_STATIC')
     ninja.variable('incs', [f'/I "{i}"' for i in includes])
-    ninja.variable('sfml_inc', sfml_include)
+    ninja.variable('sfml_inc', sfml_include_path)
     ninja.variable('sfml_lib', sfml_libpath)
+    ninja.variable('sfml_lib_man', join(sfml_libpath, 'manual-link')) # sfml-main
     ninja.variable('builddir', build_dir)
     ninja.variable('mediadir', media_dir)
+    ninja.variable('projectdir', project_dir)
     ninja.variable('exe', 'dorkanoid.exe')
     ninja.variable('sources', ' '.join(sources))
     ninja.variable('objects', ' '.join(objs))
     ninja.variable('libs', ' '.join(libs))
+    ninja.variable('icon_res', '$builddir/icon.res')
 
     ninja.rule('cc', '$cc $incs /I $sfml_inc $cppflags /c $in /Fo$out', )
-    ninja.rule('link', '$link /LIBPATH:$sfml_lib $objects $libs /OUT:$builddir/$out /DEBUG')
+    ninja.rule('link', '$link /SUBSYSTEM:windows /LIBPATH:$sfml_lib /LIBPATH:$sfml_lib_man $in $libs /OUT:$builddir/$out')
     ninja.rule('cp', 'cmd /c copy $in $out')
+    ninja.rule('rc', 'rc /fo $out /r $in ')
 
     ninja.newline()
     for src in sources:
@@ -125,18 +133,20 @@ def configure_for_win32_msvc(ninja):
         ninja.build(obj, 'cc', src)
 
     ninja.newline()
-    ninja.comment('Build the executable')
-    ninja.build('$exe', 'link', objs)
+    ninja.comment('Create res file')
+    ninja.build('$icon_res', 'rc', '$mediadir\icon.rc')
 
-    # Folder copy; prefer file copy below
-    # ninja.build(join('$builddir', 'media'), 'cp', '$mediadir')
+    ninja.newline()
+    ninja.comment('Build the executable')
+    ninja.build('$exe', 'link', objs + ['$icon_res'], order_only = ['$icon_res',])
 
     ninja.newline()
     ninja.comment('Copy media files')
     for f in media:
+        if f in ('icon.res', 'icon.rc', 'orb-g5023d71b4_1280.png',): continue
         ninja.build(join('$builddir', 'media', f), 'cp', join('$mediadir', f))
 
-def configure_for_linux_gcc(ninja):
+def configure_for_linux_gcc(ninja, args):
     # g++ -Wall -Ibuild/include -g -std=c++11 -c {} -o {} -lsfml-window -lsfml-graphics -lsfml-system -lsfml-audio
     # g++ -o  {} {} -lsfml-window -lsfml-graphics -lsfml-system -lsfml-audio
     ninja.variable('cc', 'g++')
@@ -172,6 +182,11 @@ def configure_for_linux_gcc(ninja):
 if __name__ == '__main__':
     print(f'Configuring build system for {platform}')
 
+    parser = argparse.ArgumentParser(description='Configure ninja.build')
+
+    parser.add_argument('--sfml-path', help='Path to the SFML library and headers (x64-windows-static).')
+    args = parser.parse_args()
+
     with open('build.ninja', 'w') as f:
         ninja = Writer(f)
 
@@ -181,4 +196,8 @@ if __name__ == '__main__':
             objs.append(obj)
 
         if platform == 'win32':
-            configure_for_win32_msvc(ninja)
+            configure_for_win32_msvc(ninja, args)
+        elif platform == 'linux':
+            configure_for_linux_gcc(ninja, args)
+        else:
+            print(f'Sorry, {platform} is not yet supported.')

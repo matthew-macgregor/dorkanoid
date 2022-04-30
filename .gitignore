@@ -5,6 +5,8 @@ vs-dev.ps1
 __pycache__
 x64-windows-static
 
+*.res
+
 # Compiled Object files
 *.slo
 *.lo
