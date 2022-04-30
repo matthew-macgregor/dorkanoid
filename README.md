@@ -41,20 +41,20 @@ point and build your own! ;)
 
 The project provides two build options: CMake and custom Ninja build.
 
-### CMake
+### CMake (Windows)
 
-To build with CMake install:
+To build with CMake:
 
 - `vcpkg` to install SFML: https://github.com/microsoft/vcpkg
 - Make sure to set `CMAKE_TOOLCHAIN_FILE` to your `vcpkg` install or use the `--toolchain` argument to CMake. Example: `vcpkg/scripts/buildsystems/vcpkg.cmake`
 
 ```
 mkdir build
-cmake -B build
+cmake -B build -G 'Visual Studio 17 2022'
+cmake --build build
 ```
 
-
-### Windows
+### Ninja (Windows)
 
 To build the game on Windows 10, install the following:
 
@@ -78,15 +78,19 @@ The configure script will assume that you have a standalone `x64-windows-static`
 
 You can provide a standalone directory with the same structure as vcpkg's `x64-windows-static` folder. Unzip this as `x64-windows-static` in the root of the project directory, or provide it as `--sfml-path` to the configure script.
 
-### Linux (Ubuntu)
+### Ninja (Linux: Ubuntu)
 
-To build the game on linux, install the following:
+To build the game on linux (specifically tested on Ubuntu 20.04), install the following:
 
-	sudo apt-get install libsfml-dev build-essential ninja-build
+```sh
+sudo apt-get install libsfml-dev build-essential ninja-build
+```
 
 I use a python script for building the project. It works with Python 3:
 
-	python3 scripts/configure.py
+```sh
+python3 scripts/configure.py
+```
 
 As with make, this script will only build the source files that have been
 modified.
