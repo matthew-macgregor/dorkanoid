@@ -16,7 +16,7 @@ class Brickyard
         void Draw(sf::RenderWindow& canvas);
         void RegenerateBrick();
         void Reset();
-        int BricksRemaining();
+        size_t BricksRemaining();
     private:
         void InitBricks();
         std::vector<Brick> bricks; 

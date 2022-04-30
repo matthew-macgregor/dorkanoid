@@ -5,61 +5,61 @@
 #include "stage_one.hpp"
 #include <iostream>
 
-StageOne::StageOne() :       
+StageOne::StageOne() :
     ball(windowWidth / 2, windowHeight / 2),
-    paddle(windowWidth / 2, windowHeight / 1.15) 
+    paddle(windowWidth / 2, (float)(windowHeight / 1.15))
 {
     score = 0;
 
     // Declare and load a font
     font.loadFromFile("media/VT323.ttf");
-    
+
     // Create text objects
     scoreText.setFont(font);
     scoreText.setCharacterSize(24);
-    scoreText.setColor(sf::Color::Red);
+    scoreText.setFillColor(sf::Color::Red);
     scoreText.setPosition( 10.f, 10.f );
-    
+
     musicCreditsText.setFont(font);
     musicCreditsText.setString("Music by dAmbient on Soundcloud");
     musicCreditsText.setCharacterSize(16);
-    musicCreditsText.setColor(sf::Color::White);
+    musicCreditsText.setFillColor(sf::Color::White);
     musicCreditsText.setPosition( 570.f, 10.f );
 
-    timer.SetCallback([this](int ticks) 
+    timer.SetCallback([this](int ticks)
     {
-        if(ticks % 360 == 0) 
+        if(ticks % 360 == 0)
         {
             brickyard.RegenerateBrick();
         }
     });
 }
 
-void StageOne::Update(const sf::Time& deltaTime) 
+void StageOne::Update(const sf::Time& deltaTime)
 {
     ball.Update(deltaTime);
     paddle.Update(deltaTime);
-    if(paddle.CollidesWith(ball)) 
+    if(paddle.CollidesWith(ball))
     {
         isOnARoll = false;
     }
-    
+
     int collisionCount = brickyard.CountCollisions(ball);
-    if(collisionCount > 0) 
+    if(collisionCount > 0)
     {
         if( isOnARoll ) { collisionCount *= 2; }
         score += collisionCount;
         isOnARoll = true;
     }
-    
+
     scoreText.setString("Score = " + Int2Str(score));
-    
+
     timer.Update();
 }
 
-void StageOne::Draw(sf::RenderWindow& canvas) 
+void StageOne::Draw(sf::RenderWindow& canvas)
 {
-    
+
     // Clear screen
     canvas.clear();
     canvas.draw(scoreText);
@@ -67,17 +67,17 @@ void StageOne::Draw(sf::RenderWindow& canvas)
     canvas.draw(ball.shape);
     canvas.draw(paddle.shape);
     brickyard.Draw(canvas);
-    
+
 }
 
-void StageOne::Reset() 
+void StageOne::Reset()
 {
     brickyard.Reset();
     score = 0;
     isOnARoll = false;
 }
 
-bool StageOne::IsCompleted() 
+bool StageOne::IsCompleted()
 {
     return (brickyard.BricksRemaining() == 0);
 }

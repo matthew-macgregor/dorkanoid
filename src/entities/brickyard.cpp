@@ -58,8 +58,8 @@ void Brickyard::Reset()
     InitBricks();
 }
 
-int Brickyard::BricksRemaining() 
+size_t Brickyard::BricksRemaining() 
 {
-    int count = count_if(bricks.begin(), bricks.end(), [](Brick& brick) {  return brick.destroyed == false; });
+    auto count = count_if(bricks.begin(), bricks.end(), [](Brick& brick) {  return brick.destroyed == false; });
     return count;
 }

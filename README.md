@@ -37,9 +37,24 @@ point and build your own! ;)
 
 [History of Arkanoid](https://en.wikipedia.org/wiki/Arkanoid)
 
-### Instructions to Build:
+## Instructions to Build
 
-#### Windows
+The project provides two build options: CMake and custom Ninja build.
+
+### CMake
+
+To build with CMake install:
+
+- `vcpkg` to install SFML: https://github.com/microsoft/vcpkg
+- Make sure to set `CMAKE_TOOLCHAIN_FILE` to your `vcpkg` install or use the `--toolchain` argument to CMake. Example: `vcpkg/scripts/buildsystems/vcpkg.cmake`
+
+```
+mkdir build
+cmake -B build
+```
+
+
+### Windows
 
 To build the game on Windows 10, install the following:
 
@@ -63,7 +78,7 @@ The configure script will assume that you have a standalone `x64-windows-static`
 
 You can provide a standalone directory with the same structure as vcpkg's `x64-windows-static` folder. Unzip this as `x64-windows-static` in the root of the project directory, or provide it as `--sfml-path` to the configure script.
 
-#### Linux (Ubuntu)
+### Linux (Ubuntu)
 
 To build the game on linux, install the following:
 

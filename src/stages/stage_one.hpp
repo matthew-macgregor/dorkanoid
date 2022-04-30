@@ -32,8 +32,6 @@ class StageOne : public Stage
         int score;
         bool isOnARoll;
         Timer timer;
-        
-        
 };
 
 #endif
