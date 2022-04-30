@@ -53,15 +53,15 @@ To build the game on Windows 10, install the following:
 Run the following:
 
 ```ps1
-python scripts/configure.py --sfml-path 'C:\path-to-sfml\x64-windows-static'
+python scripts/configure.py --sfml-path 'C:\path-to-vcpkg\vcpkg\installed\x64-windows-static'
 ninja
 ```
 
+The configure script will assume that you have a standalone `x64-windows-static` folder with the needed dependencies at the root of the project unless you pass the `--sfml-path` argument.
+
 ##### Using a standalone directory:
 
-You can provide a standalone directory with the same structure as vcpkg's `x64-windows-static` folder:
-
-TBD
+You can provide a standalone directory with the same structure as vcpkg's `x64-windows-static` folder. Unzip this as `x64-windows-static` in the root of the project directory, or provide it as `--sfml-path` to the configure script.
 
 #### Linux (Ubuntu)
 
