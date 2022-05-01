@@ -43,7 +43,7 @@ The project provides two build options: CMake and custom Ninja build.
 
 ### CMake (Windows)
 
-To build with CMake:
+To build with CMake (tested on Windows):
 
 - `vcpkg` to install SFML: https://github.com/microsoft/vcpkg
 - Make sure to set `CMAKE_TOOLCHAIN_FILE` to your `vcpkg` install or use the `--toolchain` argument to CMake. Example: `vcpkg/scripts/buildsystems/vcpkg.cmake`
@@ -54,9 +54,18 @@ cmake -B build -G 'Visual Studio 17 2022'
 cmake --build build
 ```
 
+Or, to use NMake instead of MSBuild:
+
+```
+cmake -B build -G 'NMake Makefiles'
+cmake --build build
+```
+
+Note: so far I haven't had any success getting CMake to generate a static build, although the custom Ninja build below does this reasonably well.
+
 ### Ninja (Windows)
 
-To build the game on Windows 10, install the following:
+To create a *static* build Windows 10, install the following:
 
 - MSVC C++ Build Tools (or Visual Studio 2019-2022 with C++ Desktop installed)
 - Build or install `ninja`: https://ninja-build.org
